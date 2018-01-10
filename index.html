@@ -28,13 +28,14 @@
         début parti modifiable 
     -->
         <div class="container-fluid inline">
-            <div class="col-md-6 inline"></div>
-                <img src="img/">
+            <div class="col-md-6 inline slidecontainer"></div>
+                <img src="img/Carte-de-France-Vierge-3.bmp">
+                    
             
-            
-            
-            
-            
+  <label for="fader">Année</label>
+<input type="range" min="2001" max="2013" value="2001" id="fader" 
+    step="1" oninput="outputUpdate(value)">
+<output for="fader" id="Année">2005</output>
             <div class="col-md-6 inline">
                 <table>
                     <tr>
@@ -75,56 +76,30 @@
                     </tr>
                 </table>
                 
-                
-                
+               
+
                 
                 
             </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+        
     <!-- -------------------------------------------------------------
         Fin parti modifiable 
     -->
+        <script> var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; // Display the default slider value
 
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    output.innerHTML = this.value;
+} </script>
 
+<script type="text/javascript">
+
+function outputUpdate(vol) {
+    document.querySelector('#Année').value = vol;
+}</script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 
