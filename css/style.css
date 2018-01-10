@@ -1,15 +1,19 @@
-.inline {
-    display: inline-block;
-}
-
-
 img {
-    width: 30%;
-    
+    width: 300px;
+    height: 300px;
+
 }
 
 
- .slidecontainer {
-    width: 40%; /* Width of the outside container */
+td {
+    border: 1px solid black;
+
 }
 
+.tdborderless {
+    border: none;
+}
+
+table {
+    width: 500px;
+}
