@@ -47,7 +47,11 @@
             </div>
             <div class="col-sm-2 py-5"></div>
 
+
             <div class="col-sm-6s py-5">
+
+            <div class="col-sm-4 py-5">
+
                 <table>
                     <tr>
                         <td style="tdborderless"> <input type="radio" name="radio" value="Particule"></td>
@@ -79,6 +83,7 @@
                         <td>Total</td>
                     </tr>
 
+
                     <tr>
                         <td>consultaions</td>
                         <td></td>
@@ -92,7 +97,7 @@
 
         </div>
     </div>
-
+    </div>
 
     <!-- -------------------------------------------------------------
         Fin parti modifiable 
