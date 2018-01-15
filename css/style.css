@@ -4,15 +4,17 @@ img {
 
 }
 
+.tdborderless {
+    border: none;
+}
+
 
 td {
     border: 1px solid black;
 
 }
 
-.tdborderless {
-    border: none;
-}
+
 
 table {
     width: 500px;
