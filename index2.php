@@ -1,3 +1,16 @@
+ <?php   
+
+ //connexion a la base de donner
+
+   /*  $result = new PDO('mysql:host=127.0.0.1;dbname=guerreti;charset=utf8', 'root','123');
+
+
+     $result=*/
+
+ ?> 
+
+
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -26,7 +39,18 @@
 
 
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+<!-- lien test  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+
+
 </head>
+
+
+
+
 
 <body>
 
@@ -43,55 +67,12 @@
     
     
 <!-- connexion---->
-
-    <script type="text/javascript">
-        function outputUpdate(vol) {
-            document.querySelector('#Année').value = vol;
-        }
-    </script>
-    <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value; // Display the default slider value
-        // Update the current slider value (each time you drag the slider handle)
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-        }
-    </script>
-    <script type="text/javascript">
-        function outputUpdate(vol) {
-          document.querySelector('#Année').value = vol;
-
-        }
-        
-        
-        $( ".selector" ).slider({
-        stop: function( event, ui ) {}
-        
-        
-        var selection = $( ".selector" ).slider( "value" );
-
-
-
-      
-
-
-});
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-
-
-
 <?php
 
 
 try
 {
-    $bdd = new PDO('mysql:host=127.0.0.1;dbname=guerreti;charset=utf8', 'root','123');
+    $result = new PDO('mysql:host=127.0.0.1;dbname=guerreti;charset=utf8', 'root','123');
     
     
     
@@ -99,14 +80,14 @@ try
     
     //on recupere tout le contenut de la table bdpollution2_5
     
-    $polution25 = $bdd->query("SELECT * FROM `bdpollution2_5` WHERE `id` = 11 ");
+    $polution25 = $result->query("SELECT * FROM `bdpollution2_5` WHERE `id` = 11 ");
     
     
     $res_taux25 = $polution25->fetch();
     
     //on recupere tout le contenut de la table bdpollution10
     
-    $polution10 = $bdd->query("SELECT * FROM `bdpollution10` WHERE `id_10` = 11 ");
+    $polution10 = $result->query("SELECT * FROM `bdpollution10` WHERE `id_10` = 11 ");
     
     
     $res_taux10 = $polution10->fetch();
@@ -114,17 +95,17 @@ try
     
     //on recupere tout le contenut de la table consultation_cardio`
     
-    $cardio = $bdd->query("SELECT * FROM `consultation_cardio` WHERE `pays` LIKE '%001 France entière%' ");
+    $cardio = $result->query("SELECT * FROM `consultation_cardio` WHERE `pays` LIKE '%001 France entière%' ");
     $res_cardio = $cardio->fetch();
 
     //on recupere tout le contenut de la table consultation_pneumo`
     
-    $pneumo = $bdd->query("SELECT * FROM `consultation_pneumo` WHERE `pays` LIKE '%001 France entière%' ");
+    $pneumo = $result->query("SELECT * FROM `consultation_pneumo` WHERE `pays` LIKE '%001 France entière%' ");
     $res_pneumo = $pneumo->fetch();
 
     //on recupere tout le contenut de la table consultation_total`
     
-    $total = $bdd->query("SELECT * FROM `consultation_totale` WHERE `pays` LIKE '%001 France entière%' ");
+    $total = $result->query("SELECT * FROM `consultation_totale` WHERE `pays` LIKE '%001 France entière%' ");
     $res_total = $total->fetch();
 
 
@@ -140,24 +121,27 @@ catch(Exception $e) {
     
     
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4 py-5"> <img src="img/carte.png">
+        <div class="row">  <!-- afficher carte -->
+            <div class="col-sm-4 py-5"> 
+                <?php include('fonction_slider.php');?>   
 
-                <label for="fader">Année</label>
-               
-<?php 
-
-
-
-
-?>
             </div>
             <div class="col-sm-2 py-5"></div>
 
 
-            <div class="col-sm-6s py-5">
+         <!--    <div class="col-sm-6s py-5">
+         
+         <div class="col-sm-4 py-5"> -->
+<input type="range" min="2001" max="2013" step="1" value="2001" id="min_price" name="min_price" />  
+                     <span id="price_range"></span>  
 
-            <div class="col-sm-4 py-5">
+
+ <div id="product_loading">  
+            
+                
+                <div>Année 2001</div>
+                <br>
+
 
                 <table>
                     <tr>
@@ -175,17 +159,12 @@ catch(Exception $e) {
 
                     <tr>
                         <td>Taux reel relevé</td>
-                         <?php echo " <input type='range' min='2001' max='2040' value='2001' id='fader' step='1' oninput='outputUpdate(value)'>
-                         <output for='fader' id='Année'>2001</output>
-" ;?>
-                
-
-
+                       
                         <td><?php 
-                            $variable=2002;
+                        //valeur par defaut 2001
 
-                        echo $res_taux25[$variable]; ?></td>
-                        <td><?php echo $res_taux10['2002']; ?></td>
+                        echo $res_taux25['2001']; ?></td>
+                        <td><?php echo $res_taux10['2001']; ?></td>
                     </tr>
                 </table>
                 <br>
@@ -198,25 +177,46 @@ catch(Exception $e) {
                         <td>Cardiologie</td>
                         <td>Total</td>
 
-                        <input type="submit" value="raf" name="">outputUpdate(vol)</tr>
-                    </tr>
-
-
                     <tr>
                         <td>consultaions</td>
 
-                        <td><?php echo $res_cardio['2002']; ?></td>
-                        <td><?php echo $res_pneumo['2002']; ?></td>
-                        <td><?php echo $res_total['2002']; ?></td>
+                        <td><?php echo $res_cardio['2001']; ?></td>
+                        <td><?php echo $res_pneumo['2001']; ?></td>
+                        <td><?php echo $res_total['2001']; ?></td>
                     </tr>
                 </table>
 
-            </div>
-
+            
+    
+                          
+                       
+                     
+                 </div>
+          
+                </div>  
 
         </div>
-    </div>
-    </div>
+    
+
+
+
+<!--  //////////recup l'anner et regener la page toute les 500ms ////////////// -->
+ <script>  
+ $(document).ready(function(){  
+      $('#min_price').change(function(){  
+           var price = $(this).val();  
+           $("#price_range").text("Année " + price);  
+           $.ajax({  
+                url:"fonction_slider.php",  
+                method:"POST",  
+                data:{price:price},  
+                success:function(data){  
+                     $("#product_loading").fadeIn(500).html(data);  
+                }  
+           });  
+      });  
+ });  
+ </script>  
 
     <!-- -------------------------------------------------------------
         Fin parti modifiable 
