@@ -132,8 +132,8 @@ catch(Exception $e) {
          <!--    <div class="col-sm-6s py-5">
          
          <div class="col-sm-4 py-5"> -->
-<input type="range" min="2001" max="2013" step="1" value="2001" id="min_price" name="min_price" />  
-                     <span id="price_range"></span>  
+<input type="range" min="2001" max="2013" step="1" value="2001" id="slider_val" name="slider_val" />  
+                     <span id="val_slider"></span>  
 
 
  <div id="product_loading">  
@@ -145,9 +145,29 @@ catch(Exception $e) {
 
                 <table>
                     <tr>
-                        <td style="tdborderless"> <input type="radio" name="radio" value="Particule"></td>
-                        <td>particules de moins de 2.5ùm</td>
-                        <td>particules de + de 10ùm</td>
+                        <td style="tdborderless"></td>
+                        <form name="form1" id="radiopollution1">
+                            <td><input type="radio" name="radiopollution" id="radiopollution2" value="particule25" checked >particules de moins de 2.5ùm</td>
+                            <td><input type="radio" name="radiopollution" id="radiopollution" value="particule10">particules de + de 10ùm</td>
+                        </form>
+                     <script type="text/javascript">
+                         var radios = document.getElementsByName("radiopollution");
+                            for (i=0; i<radios.length; i++)
+                                if (radios[i].checked)
+                                    var couleurChoisie = radios[i].value;
+
+
+                        $.ajax({  
+                        url:"fonction_slider.php",  
+                        method:"POST",  
+                        data:{couleurChoisie:couleurChoisie},  
+                        success:function(data){  
+                             $("#radiopollution1").fadeIn(500).html(data);  
+                        }  
+
+                     </script>
+
+                      
                     </tr>
 
 
@@ -172,7 +192,7 @@ catch(Exception $e) {
 
                 <table>
                     <tr>
-                        <td style="tdborderless"> <input type="radio" name="radio" value="Pneumologie"></td>
+                        <td style="tdborderless"></td>
                         <td>Pneumologie</td>
                         <td>Cardiologie</td>
                         <td>Total</td>
@@ -203,19 +223,43 @@ catch(Exception $e) {
 <!--  //////////recup l'anner et regener la page toute les 500ms ////////////// -->
  <script>  
  $(document).ready(function(){  
-      $('#min_price').change(function(){  
-           var price = $(this).val();  
-           $("#price_range").text("Année " + price);  
+      $('#slider_val').change(function(){  
+           var annee1 = $(this).val();  
+           $("#val_slider").text("Année " + annee1);  
            $.ajax({  
                 url:"fonction_slider.php",  
                 method:"POST",  
-                data:{price:price},  
+                data:{annee1:annee1},  
                 success:function(data){  
                      $("#product_loading").fadeIn(500).html(data);  
                 }  
            });  
       });  
  });  
+ </script>  
+<!-- /////////////////valeur des bouton radio //////////////////-->
+  <script>  
+
+
+
+function wichFruit()
+{
+  var radio = document.form1.radiopollution;
+  for (var i=0; i < element.length; i++)
+  {
+    if (radio[i].checked)
+    {
+      var radiopollution = element[i].value;
+      break;
+    }
+  }
+}
+
+function ajaxFun()
+{
+  var data = "radiopollution=" + whichFruit();
+  AAWrite("fonction_slider.php", data, unefonction);
+} 
  </script>  
 
     <!-- -------------------------------------------------------------
