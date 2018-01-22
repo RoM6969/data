@@ -26,46 +26,23 @@
     
     
     <title>Api Polution</title>
-    
-    
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    
     <link rel="stylesheet" href="css/style.css">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
-
-
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-
-<!-- lien test  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
 
 
 </head>
+<body >
+<div class="imgback" img="pollution.jpg" height="100"></div>
 
-
-
-
-
-<body>
-
-
-
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-    <!-- -------------------------------------------------------------
-        début parti modifiable 
-    -->
-    
-    
-    
 <!-- connexion---->
 <?php
 
@@ -116,106 +93,81 @@ catch(Exception $e) {
 ?>
 
 
+<div class="container">
+
+<h1> 
+    <div class="text-center ">
+     Impacte de la pollution sur la santé 
+    <span class="text-center" id="val_slider"></span> !
+
+    </div>
+</h1>
+</div>
 
 
-    
-    
-    <div class="container">
-        <div class="row">  <!-- afficher carte -->
-            <div class="col-sm-4 py-5"> 
-                <?php include('fonction_slider.php');?>   
 
+<div class="container">
+
+
+
+    <div class="row">  <!-- afficher carte -->
+            <div class="text-aligne col-sm-6"> 
+            <?php include('fonction_slider.php');?>   
             </div>
-            <div class="col-sm-2 py-5"></div>
+            <br>
 
-
-         <!--    <div class="col-sm-6s py-5">
-         
-         <div class="col-sm-4 py-5"> -->
-<input type="range" min="2001" max="2013" step="1" value="2001" id="slider_val" name="slider_val" />  
-                     <span id="val_slider"></span>  
-
-
- <div id="product_loading">  
+            <div class="text-aligne col-sm-6">
+                <h2> <span class="text-center" id="val_slider"></span>  
+                </h2>
+            </div>
             
+    <input type="range" min="2001" max="2013" step="1" value="2001" id="slider_val" name="slider_val" />  
+
+
+
+            <div id="product_loading">  
+            <br>
+
+<table class="text-center">
+                   
+
+    <tr>
+        <td>Taux moyen de l'OMS</td>
+        <td>10</td>
+        <td>20</td>
+    </tr>
+
+        <tr>
+        <td>Taux reel relevé</td>           
+        <td><?php 
+        //valeur par defaut 2001
+        echo $res_taux25['2001']; ?></td>
+        <td><?php echo $res_taux10['2001']; ?></td>
+        </tr>
+</table>
                 
-                <div>Année 2001</div>
-                <br>
+        <br><br>
 
+<table>
+    <tr>
+        <td style="tdborderless"></td>
+        <td>Pneumologie</td>
+        <td>Cardiologie</td>
+        <td>Total</td>
 
-                <table>
-                    <tr>
-                        <td style="tdborderless"></td>
-                        <form name="form1" id="radiopollution1">
-                            <td><input type="radio" name="radiopollution" id="radiopollution2" value="particule25" checked >particules de moins de 2.5ùm</td>
-                            <td><input type="radio" name="radiopollution" id="radiopollution" value="particule10">particules de + de 10ùm</td>
-                        </form>
-                     <script type="text/javascript">
-                         var radios = document.getElementsByName("radiopollution");
-                            for (i=0; i<radios.length; i++)
-                                if (radios[i].checked)
-                                    var couleurChoisie = radios[i].value;
-
-
-                        $.ajax({  
-                        url:"fonction_slider.php",  
-                        method:"POST",  
-                        data:{couleurChoisie:couleurChoisie},  
-                        success:function(data){  
-                             $("#radiopollution1").fadeIn(500).html(data);  
-                        }  
-
-                     </script>
-
-                      
-                    </tr>
-
-
-                    <tr>
-                        <td>Taux maximal de l'OMS</td>
-                        <td>10</td>
-                        <td>20</td>
-                    </tr>
-
-                    <tr>
-                        <td>Taux reel relevé</td>
-                       
-                        <td><?php 
-                        //valeur par defaut 2001
-
-                        echo $res_taux25['2001']; ?></td>
-                        <td><?php echo $res_taux10['2001']; ?></td>
-                    </tr>
-                </table>
-                <br>
-                <br>
-
-                <table>
-                    <tr>
-                        <td style="tdborderless"></td>
-                        <td>Pneumologie</td>
-                        <td>Cardiologie</td>
-                        <td>Total</td>
-
-                    <tr>
-                        <td>consultaions</td>
-
-                        <td><?php echo $res_cardio['2001']; ?></td>
-                        <td><?php echo $res_pneumo['2001']; ?></td>
-                        <td><?php echo $res_total['2001']; ?></td>
-                    </tr>
-                </table>
-
-            
-    
-                          
-                       
-                     
-                 </div>
-          
-                </div>  
+    </tr>
+        <td>Consultaions</td>
+        <td><?php echo $res_cardio['2001']; ?></td>
+        <td><?php echo $res_pneumo['2001']; ?></td>
+        <td><?php echo $res_total['2001']; ?></td>
+    </tr>
+</table>
 
         </div>
+          
+    </div>  
+
+</div>
     
 
 
@@ -225,7 +177,7 @@ catch(Exception $e) {
  $(document).ready(function(){  
       $('#slider_val').change(function(){  
            var annee1 = $(this).val();  
-           $("#val_slider").text("Année " + annee1);  
+           $("#val_slider").text("sur l'année " + annee1);  
            $.ajax({  
                 url:"fonction_slider.php",  
                 method:"POST",  
@@ -237,30 +189,7 @@ catch(Exception $e) {
       });  
  });  
  </script>  
-<!-- /////////////////valeur des bouton radio //////////////////-->
-  <script>  
 
-
-
-function wichFruit()
-{
-  var radio = document.form1.radiopollution;
-  for (var i=0; i < element.length; i++)
-  {
-    if (radio[i].checked)
-    {
-      var radiopollution = element[i].value;
-      break;
-    }
-  }
-}
-
-function ajaxFun()
-{
-  var data = "radiopollution=" + whichFruit();
-  AAWrite("fonction_slider.php", data, unefonction);
-} 
- </script>  
 
     <!-- -------------------------------------------------------------
         Fin parti modifiable 
@@ -290,13 +219,3 @@ function ajaxFun()
 </body>
 
 </html>
-
-
-
-
-<!--          -->
-
-
-
-
-<!--          -->
