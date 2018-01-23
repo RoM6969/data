@@ -24,7 +24,45 @@ table {
 .lvert{
 	color: black;
 	background-color: green;
-	height: 100px;
-	width: 100px;
-	position: absolute;
+	height: 50px;
+	width: 50px;
+	position: relative;
+}
+
+
+.lorange{
+	color: black;
+	background-color: orange;
+	height: 50px;
+	width: 50px;
+	position: relative;
+}
+
+.lrouge{
+	color: black;
+	background-color: red;
+	height: 50px;
+	width: 50px;
+	position: relative;
+}
+
+.lgris{
+	color: black;
+	background-color:grey;
+	height: 50px;
+	width: 50px;
+	position: relative;
+}
+
+.lnoire{
+	color: black;
+	background-color: black;
+	height: 50px;
+	width: 50px;
+	position: relative;
+}
+
+li{
+	list-style: none;
+	float: left;
 }

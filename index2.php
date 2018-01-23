@@ -49,7 +49,7 @@
 
 try
 {
-    $result = new PDO('mysql:host=127.0.0.1;dbname=guerreti;charset=utf8', 'root','123');
+      $result = new PDO('mysql:host=127.0.0.1;dbname=api_pollution;charset=utf8', 'root','123');
     
     
     
@@ -64,7 +64,7 @@ try
     
     //on recupere tout le contenut de la table bdpollution10
     
-    $polution10 = $result->query("SELECT * FROM `bdpollution10` WHERE `id_10` = 11 ");
+    $polution10 = $result->query("SELECT * FROM `bdpollution10` WHERE `id` = 11 ");
     
     
     $res_taux10 = $polution10->fetch();
@@ -82,7 +82,7 @@ try
 
     //on recupere tout le contenut de la table consultation_total`
     
-    $total = $result->query("SELECT * FROM `consultation_totale` WHERE `pays` LIKE '%001 France entière%' ");
+    $total = $result->query("SELECT * FROM `consultation_total` WHERE `pays` LIKE '%001 fra%' ");
     $res_total = $total->fetch();
 
 
